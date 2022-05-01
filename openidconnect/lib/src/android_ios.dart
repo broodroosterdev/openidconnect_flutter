@@ -2,12 +2,7 @@ part of openidconnect;
 
 class OpenIdConnectAndroidiOS {
   static Future<String> authorizeInteractive({
-    required BuildContext context,
-    required String title,
     required String authorizationUrl,
-    required String redirectUrl,
-    required int popupWidth,
-    required int popupHeight,
   }) async {
     //Launch the custom tabs window
     await tabs.launch(authorizationUrl);
