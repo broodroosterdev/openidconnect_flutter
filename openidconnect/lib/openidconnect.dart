@@ -13,8 +13,9 @@ import 'package:openidconnect_platform_interface/openidconnect_platform_interfac
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:retry/retry.dart';
-import 'package:webview_flutter/webview_flutter.dart' as flutterWebView;
+import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as tabs;
 
 part './src/openidconnect_client.dart';
 part './src/android_ios.dart';
@@ -126,10 +127,10 @@ class OpenIdConnect {
       );
     }
 
-    return await _completeCodeExchange(request: request, url: responseUrl);
+    return await completeCodeExchange(request: request, url: responseUrl);
   }
 
-  static Future<AuthorizationResponse> _completeCodeExchange({
+  static Future<AuthorizationResponse> completeCodeExchange({
     required InteractiveAuthorizationRequest request,
     required String url,
   }) async {
@@ -296,7 +297,7 @@ class OpenIdConnect {
     await storage.delete(key: CODE_VERIFIER_STORAGE_KEY);
     await storage.delete(key: CODE_CHALLENGE_STORAGE_KEY);
 
-    final result = await _completeCodeExchange(
+    final result = await completeCodeExchange(
       request: InteractiveAuthorizationRequest._(
         clientId: clientId,
         clientSecret: clientSecret,
