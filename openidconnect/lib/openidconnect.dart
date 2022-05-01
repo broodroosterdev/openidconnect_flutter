@@ -85,12 +85,7 @@ class OpenIdConnect {
     //These are special cases for the various different platforms because of limitations in pubspec.yaml
     if (!kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
       responseUrl = await OpenIdConnectAndroidiOS.authorizeInteractive(
-        context: context,
-        title: title,
         authorizationUrl: uri.toString(),
-        redirectUrl: request.redirectUrl,
-        popupHeight: request.popupHeight,
-        popupWidth: request.popupWidth,
       );
     } else if (kIsWeb) {
       final storage = FlutterSecureStorage();
